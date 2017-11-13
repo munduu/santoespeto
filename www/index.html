@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+        <title>Blank App Designer Cordova Web App Project Template</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!--<script src="cordova.js" id="xdkJScordova_"></script>-->
+
+        <script src="js/app.js"></script>
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <!--<script type="application/javascript" src="lib/jquery.min.js"></script>-->
+        <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.js"></script>
+        <script type="application/javascript" src="ionic/js/ionic.bundle.js"></script>
+        <script type="application/javascript" src="js/index_init_services.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="xdk/ad/ionic_subpage.js"></script>
+        <script type="application/javascript" src="xdk/appdesigner/js/rest-of-space.js"></script>
+        <!--autocomplete-->
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/typeahead.js"></script>
+
+        <!--SPIN X:\apps_inova\todebico\www\bootstrap-touchspin-master\src -->
+        <link href="bootstrap-touchspin-master/src/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" media="all">
+        <script src="bootstrap-touchspin-master/src/jquery.bootstrap-touchspin.js"></script>
+        <!--SPIN-->
+
+        <style>
+            h1{
+            font-size: 20px;
+            color: #111;
+            }
+            .content{
+                width: 80%;
+                margin: 0 auto;
+                margin-top: 50px;
+            }
+
+            .typeahead-devs, .tt-hint {
+                border: 2px solid #CCCCCC;
+                border-radius: 8px 8px 8px 8px;
+                font-size: 24px;
+                height: 45px;
+                line-height: 30px;
+                outline: medium none;
+                padding: 8px 12px;
+                width: 400px;
+            }
+
+            .tt-dropdown-menu {
+              width: 400px;
+              margin-top: 5px;
+              padding: 8px 12px;
+              background-color: #fff;
+              border: 1px solid #ccc;
+              border: 1px solid rgba(0, 0, 0, 0.2);
+              border-radius: 8px 8px 8px 8px;
+              font-size: 18px;
+              color: #111;
+              background-color: #F1F1F1;
+            }
+
+            .loader {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url(images/Preloader_2.gif) 50% 50% no-repeat rgba(255, 255, 255, 0.7);
+                
+            }
+
+            .btn_sair{
+                font-size: 18px;
+                margin-top: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], textarea {
+                height: 45px !important;
+                font-size: 20px !important;
+                }
+        </style>
+        <!--autocomplete-->
+        <script type="text/javascript">
+            function esconde_load(){
+                $('.loader').hide();
+            }
+        </script>
+        <script>
+            $( function() {
+                $(".qtd_produto").TouchSpin({
+                    min: 1,
+                    max: 99,
+                    step: 1,
+                    decimals: 0,
+                    boostat: 5,
+                    maxboostedstep: 10,
+                    postfix: 'QTD'
+                });
+            });
+        </script>
+    </head>
+
+    <body ng-app="myApp">
+        <div class="loader"></div>
+
+        <div class="upage" id="mainpage">
+            <div class="upage-outer">
+                <!--
+                <ion-header-bar class="bar inner-element uib_w_1 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="center">
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                    <h1 class="title">Santo Espeto</h1>
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                </ion-header-bar>
+                -->
+                <div class="upage-content ac0 content-area vertical-col left" id="page_46_72">
+                    
+                    <div class="widget uib_w_2 scale-image d-margins" data-uib="media/img" data-ver="0">
+                        <figure class="figure-align">
+                            <img src="images/bg_logo.jpg">
+                            <figcaption data-position="bottom"></figcaption>
+                        </figure>
+                    </div>
+                    <div style="margin-top: 10%; width: 100%">
+                        <label class="item item-input widget uib_w_3 d-margins" data-uib="ionic/input" data-ver="0">
+                            <i class="icon ion-android-social-user ion placeholder-icon"></i>
+                            <input type="number" placeholder="Usuario" id="usuario" style="text-decoration: none;">
+                        </label>
+                        <label class="item item-input widget uib_w_4 d-margins" data-uib="ionic/input" data-ver="0">
+                            <i class="icon placeholder-icon ion-locked ion"></i>
+                            <input type="password" placeholder="Senha" id="senha" style="text-decoration: none;">
+                        </label>
+                    </div>
+                    <button class="button widget btn_entrar d-margins ion button-positive" data-uib="ionic/button" data-ver="0">Entrar</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="upage hidden" id="mesa">
+            <div class="upage-outer">
+                <div class="upage-content ac0 content-area vertical-col left" id="page_24_69">
+                    <div class="widget uib_w_7 scale-image d-margins" data-uib="media/img" data-ver="0">
+                        <figure class="figure-align">
+                            <img src="images/bg_logo.jpg">
+                            <figcaption data-position="bottom"></figcaption>
+                        </figure>
+                    </div>
+                    <div class="tarea widget uib_w_34 d-margins" data-uib="media/text" data-ver="0" name="uib_w_34">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div class="text-container">
+                            <input class="nomeu" type="hidden" id="nomeu">
+                        </div>
+                    </div>
+                    <label class="item item-input widget uib_w_8 d-margins" data-uib="ionic/input" data-ver="0">
+                        <input type="number" placeholder="Nº do Cartão " id="n_cartao">
+                    </label>
+                    <!--<label class="item item-input widget uib_w_26 d-margins" data-uib="ionic/input" data-ver="0">
+                        <input type="text" placeholder="Nº da Mesa (OPCIONAL)" id="n_mesa">
+                    </label>-->
+                    <button class="button widget btn_mesa d-margins button-positive" data-uib="ionic/button" data-ver="0">NOVA VENDA</button>
+                </div>
+                <ion-header-bar class="bar inner-element uib_w_6 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="center">
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                    <div><h1 class="title">Seleção de Cartão</h1></div>
+					<div class="buttons widget-container content-area horiz-area wrapping-col">
+                    </div>
+                    <div class="buttons widget-container content-area horiz-area wrapping-col">
+                        <div class="btn_sair" alt='mainpage' style="width: 100%;">
+                            <i class="ion-close-circled"></i> SAIR
+                        </div>
+                    </div>
+                </ion-header-bar>
+            </div>
+        </div>
+
+        <div class="upage hidden" id="cadastro_mesa">
+            <div class="upage-outer">
+                <div class="upage-content ac0 content-area vertical-col left" id="page_11_61">
+                    <div class="widget uib_w_11 scale-image d-margins" data-uib="media/img" data-ver="0">
+                        <figure class="figure-align">
+                            <img src="images/bg_logo.jpg">
+                            <figcaption data-position="bottom"></figcaption>
+                        </figure>
+                    </div>
+                    <label class="item item-input widget d-margins" data-uib="ionic/input" data-ver="0">
+                        <input type="text" placeholder="Nº do Cartão " id="n_cartao_novo" readonly="readonly">
+                    </label>
+                    <!--<label class="item item-input widget uib_w_12 d-margins" data-uib="ionic/input" data-ver="0">
+                        <input type="text" placeholder="Quantidade Cover" id="qtd_cover">
+                    </label>
+                    <label class="item item-input widget uib_w_13 d-margins" data-uib="ionic/input" data-ver="0">
+                        <input type="text" placeholder="Valor Cover" id="cover">
+                    </label>
+                    <label class="item item-input item-select widget uib_w_14 d-margins" data-uib="ionic/select" data-ver="0">
+                        <div class="input-label"></div>
+                        <select id="n_cartao">
+                            <option>Option1</option>
+                            <option>Option2</option>
+                            <option>Option3</option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-select widget uib_w_15 d-margins" data-uib="ionic/select" data-ver="0">
+                        <div class="input-label"></div>
+                        <select id="vendedor">
+                            <option>Option1</option>
+                            <option>Option2</option>
+                            <option>Option3</option>
+                        </select>
+                    </label>-->
+                    <button class="button widget btn_abrir_mesa d-margins button-positive" data-uib="ionic/button" data-ver="0">Abrir</button>
+                </div>
+                <ion-header-bar class="bar inner-element uib_w_10 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="center">
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                    <h1 class="title">Cadastro de Mesa</h1>
+                    <div class="buttons widget-container content-area horiz-area wrapping-col">
+                        <div class="btn_sair" alt='mesa' style="width: 100%;">
+                            <i class="ion-arrow-left-a"></i> VOLTAR
+                        </div>
+                    </div>
+                    <div class="buttons widget-container content-area horiz-area wrapping-col">
+                        <div class="btn_sair" alt='mainpage' style="width: 100%;">
+                            <i class="ion-close-circled"></i> SAIR
+                        </div>
+                    </div>
+                </ion-header-bar>
+            </div>
+        </div>
+
+        <div class="upage hidden" id="cadastro_venda">
+            <div class="upage-outer">
+                <div class="upage-content ac0 content-area vertical-col left" id="page_55_93">
+                    <div class="table-thing widget uib_w_27 d-margins" data-uib="twitter%20bootstrap/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="n_mesa">Nº da Mesa</label>
+                        <input class="n_mesa wide-control form-control default" type="text" readonly="readonly">
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_7 row-height-7" data-ver="0">
+                        <div data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+
+                                <label class="item item-input widget uib_w_18 d-margins" data-uib="ionic/input" data-ver="0">
+                                    <input type="number" min="1" value="1" class="qtd_produto" id="qtd" placeholder="Quantidade" style="text-align: center;">
+                                </label><span class="uib_shim"></span>
+                            </div>
+                        </div>
+
+                        <div data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+
+                                <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                    <input type="number" placeholder="Cod. Produto" name="produto" id="produto" class="typeahead-devs">
+                                </label>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+
+                        <!--<div class="col uib_col_19 col-0_4-12_4-4" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <button class="btn widget uib_w_33 d-margins btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1">Buscar</button>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>-->
+                        <span class="uib_shim"></span>
+                    </div>
+                    <!--<div class="grid grid-pad urow uib_row_12 row-height-12" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_18 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col center">
+                                <div class="tarea widget uib_w_32 d-margins" data-uib="media/text" data-ver="0" name="uib_w_32">
+                                    <div class="text-container">
+                                        <p id="nome_p">&nbsp;</p>
+                                    </div>
+                                </div>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_9 row-height-9" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_13 col-0_6-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <label id="rem"></label>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <div class="col uib_col_14 col-0_6-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <label id="add"></label>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+
+                        <span class="uib_shim"></span>
+                    </div>
+                    <div class="grid grid-pad urow uib_row_10 row-height-10" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_16 col-0_6-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="table-thing widget uib_w_28 d-margins" data-uib="twitter%20bootstrap/select" data-ver="1">
+                                    <label class="narrow-control"></label>
+                                    <select class="wide-control form-control default" name="sabor" id="sabor" style="display:none;">
+
+                                    </select>
+                                </div>
+                                <div class="table-thing widget uib_w_30 d-margins" data-uib="twitter%20bootstrap/select" data-ver="1">
+                                    <label class="narrow-control"></label>
+                                    <select class="wide-control form-control default" name="fracao" id="fracao" style="display:none;">
+
+                                    </select>
+                                </div>
+
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <div class="col uib_col_15 col-0_6-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="table-thing widget uib_w_29 d-margins" data-uib="twitter%20bootstrap/select" data-ver="1">
+                                    <label class="narrow-control"></label>
+                                    <select class="wide-control form-control default" name="sabor2" id="sabor2" style="display:none;">
+
+                                    </select>
+                                </div>
+                                <br>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>-->
+
+                    <form class="grid grid-pad urow uib_row_8 row-height-8" data-uib="layout/row" data-ver="0">
+
+                        <div class="col uib_col_11 col-0" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <button class="button widget btn_incluir d-margins button-positive" data-uib="ionic/button" data-ver="0">Incluir na venda</button>
+                                <!--<div class="uib-grid widget uib_w_31 grid-text grid-height d-margins" data-uib="layout/grid" data-ver="1">
+
+                                </div>-->
+
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </form>
+                    <p><b>Lista de Vendas</b>
+                    </p>
+                    <ion-list class="widget uib_w_20 d-margins" data-uib="ionic/list" data-ver="0">
+
+                        <ion-item class="item widget uib_w_21" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
+                        <ion-item class="item widget uib_w_22" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
+                        <ion-item class="item widget uib_w_23" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
+                    </ion-list>
+
+                </div>
+                <ion-header-bar class="bar inner-element uib_w_17 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="center">
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                    <h1 class="title">iGestão Venda</h1>
+                    <div class="buttons widget-container content-area horiz-area wrapping-col">
+                        <div class="btn_sair" alt='mesa' style="width: 100%;">
+                            <i class="ion-arrow-left-a"></i> VOLTAR
+                        </div>
+                    </div><div class="buttons widget-container content-area horiz-area wrapping-col">
+                        <div class="btn_sair" alt='mainpage' style="width: 100%;">
+                            <i class="ion-close-circled"></i> SAIR
+                        </div>
+                    </div>
+                </ion-header-bar>
+            </div>
+        </div>
+
+        <input type="hidden" id="n_usuario" name="n_usuario" value="">
+    </body>
+
+</html>
