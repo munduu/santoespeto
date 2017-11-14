@@ -348,7 +348,7 @@
         var fracao   = $("#fracao").val();*/ 
         var user     = $("#n_usuario").val();
 
-        alert(user);
+        //alert(user);
 
         /*
         var x        = $("#x").val();
@@ -389,11 +389,11 @@
         data:{n_cartao: n_cartao, n_mesa: n_mesa, produto: produto, qtd: qtd, user:user},
         
         */
-        
+        //, add: add, rem: rem, sabor: sabor, sabor2: sabor2, fracao:fracao
         $.ajax({
         type:"POST",
         url:url_geral+"cadastrar_venda.php",
-        data:{n_cartao: n_cartao, n_mesa: n_mesa, produto: produto, qtd: qtd, add: add, rem: rem, sabor: sabor, sabor2: sabor2, fracao:fracao, user:user},
+        data:{n_cartao: n_cartao, n_mesa: n_mesa, produto: produto, qtd: qtd, user:user},
         timeout: 2000,
             success:function(resultado){
                 // alert ($("#n_usuario").val());
