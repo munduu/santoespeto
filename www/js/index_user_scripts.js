@@ -95,8 +95,7 @@
      
     //Seleção de mesa Inicio  
     $(document).on("click", ".btn_mesa", function(evt)
-    {
-        
+    {     
         var n_cartao = $("#n_cartao").val();
         var n_mesa   = $("#n_mesa").val();
         var user     =getCookie("username");
@@ -156,9 +155,8 @@
         
                 $("#add").hide();
                 $("#add").empty();*/
-                
                 $("#nome_p").hide();
-                 $(".uib_w_20").html(resultado);
+                $(".uib_w_20").html(resultado);
                 if(resultado.caminho==''){
                     alert('NÃO DEU!');
                 }else{ 
@@ -348,7 +346,11 @@
         var fracao   = $("#fracao").val();*/ 
         var user     = $("#n_usuario").val();
 
-        //alert(user);
+        if(produto == ''){
+            alert('Nenhum Codigo Digitado!');
+            //$('.btn_mesa').click();
+            return false;
+        }
 
         /*
         var x        = $("#x").val();
@@ -399,7 +401,7 @@
                 // alert ($("#n_usuario").val());
                 $(".uib_w_20").html(resultado);
                 $("#produto").val('');
-				$("#qtd").val('');
+				$("#qtd").val('1');
                 
                 /*$("#sabor").hide();
                 $("#sabor").val('0');
@@ -417,7 +419,7 @@
                 $("#add").empty();*/
                 
                 $("#nome_p").hide();
-                style="display:none;"
+                //style="display:none;"
                 if(resultado.caminho==''){
                     alert('NÃO DEU!');
                 }else{ 
