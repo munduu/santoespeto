@@ -36,6 +36,67 @@
     }
      //funcoes do COOKIE Final
     
+    
+
+    function imprecao_total(n_mesa,n_cartao,user,tipo){
+
+        $.ajax({
+            type:"POST",
+            url:url_geral+"imprimir.php",
+            data:{n_cartao: n_cartao, n_mesa: n_mesa, user:user, tipo:tipo},
+            timeout: 2000,
+            success:function(resultado){                
+                if(resultado!=''){
+                    alert('Impressão Realizada !');
+                }
+                   
+                /*$("#nome_p").hide();
+                //style="display:none;"
+                if(resultado.caminho==''){
+                    alert('NÃO DEU!');
+                }else{ 
+                    activate_page("#cadastro_venda");
+                }*/
+            },
+            error:function(resultado){
+                alert('Erro na impressao de venda #005');
+            }
+        }); 
+    }
+	
+	function mesa_nova(n_mesa, user){
+
+        $.ajax({
+            type:"POST",
+            url:url_geral+"cadastrar_mesa.php",
+            data:{n_cartao: n_mesa, user:user},
+            timeout: 2000,
+            success:function(resultado){ 
+                if(resultado == 1){
+                    alert('Mesa Aberta !');
+					$('.btn_mesa').click();
+                }else if(resultado == 2){
+					alert('Campo Obrigatorio Vazio: NÚMERO MESA VAZIO!');
+				}else if(resultado == 3){
+					alert('Campo Obrigatorio Vazio: EVENTO NÃO SELECIONADOS, CONTATE A ADMINISTRAÇÃO.');
+				}else if(resultado == 4){
+					alert('MESA *** '+n_mesa+' *** JA ESTA ABERTA!');
+				}					
+                   
+                /*$("#nome_p").hide();
+                //style="display:none;"
+                if(resultado.caminho==''){
+                    alert('NÃO DEU!');
+                }else{ 
+                    activate_page("#cadastro_venda");
+                }*/
+            },
+            error:function(resultado){
+                alert('Erro no cadastro de mesa #001');
+            }
+        }); 
+    }
+
     //Login Inicio 
     $(document).on("click", ".btn_entrar", function(evt)
     {
@@ -92,7 +153,33 @@
         }   
     });
     //Logout Fim
-     
+    
+	$(document).on("click", ".btn_imp_parc", function(evt)
+    {
+        var n_mesa   = $("#n_mesa").val();
+        var n_cartao = $("#n_cartao").val();
+        var user     = $("#n_usuario").val();
+
+        imprecao_total(n_mesa,n_cartao,user,'1');
+    });
+
+    $(document).on("click", ".btn_fechar", function(evt)
+    {
+        var n_mesa   = $("#n_mesa").val();
+        var n_cartao = $("#n_cartao").val();
+        var user     = $("#n_usuario").val();
+
+        imprecao_total(n_mesa,n_cartao,user,'2');
+    });
+	
+	$(document).on("click", ".btn_abrir_mesa", function(evt)
+    {
+        var n_mesa   = $("#n_cartao_novo").val();
+		var user     = $("#n_usuario").val();
+
+        mesa_nova(n_mesa, user);
+    });
+	
     //Seleção de mesa Inicio  
     $(document).on("click", ".btn_mesa", function(evt)
     {     
