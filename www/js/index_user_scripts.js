@@ -44,8 +44,12 @@
             type:"POST",
             url:url_geral+"imprimir.php",
             data:{n_cartao: n_cartao, n_mesa: n_mesa, user:user, tipo:tipo},
-            timeout: 2000,
-            success:function(resultado){                
+            timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
+            success:function(resultado){
+                $('.loader').hide();                
                 if(resultado!=''){
                     alert('Impressão Realizada !');
                 }
@@ -70,8 +74,12 @@
             type:"POST",
             url:url_geral+"cadastrar_mesa.php",
             data:{n_cartao: n_mesa, user:user},
-            timeout: 2000,
-            success:function(resultado){ 
+            timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
+            success:function(resultado){
+                $('.loader').hide(); 
                 if(resultado == 1){
                     alert('Mesa Aberta !');
 					$('.btn_mesa').click();
@@ -116,7 +124,7 @@
         dataType:"json",
         url:url_geral+"login.php",
         data:{usuario: usuario, senha: senha},
-        timeout: 2000,
+        timeout: 10000,
             beforeSend: function(resultado){ 
                 $('.loader').show();
             },
@@ -188,7 +196,8 @@
         var user     =getCookie("username");
         
         if(n_cartao==''){
-            alert('n_cartao vazio');
+            alert('Nº Cartao vazio!');
+            return false;
         }
         if(n_mesa==''){
             n_mesa = 0;
@@ -200,8 +209,12 @@
         dataType:"json",
         url:url_geral+"cartao.php",
         data:{n_cartao: n_cartao},
-        timeout: 2000,
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
             success:function(resultado){
+                $('.loader').hide();
                 if(resultado.caminho==''){
                     alert('NÃO DEU!');
                 }else if(resultado.caminho == '2'){
@@ -223,8 +236,12 @@
         type:"POST",
         url:url_geral+"listar_venda.php",
         data:{n_cartao: n_cartao, n_mesa: n_mesa},
-        timeout: 2000,
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
             success:function(resultado){
+                $('.loader').hide();
                 $("#produto").val('');
 				$("#qtd").val('1');
                 
@@ -262,8 +279,12 @@
         type:"POST",
         url:url_geral+"destaque.php",
         data:{n_cartao: n_cartao, n_mesa: n_mesa},
-        timeout: 2000,
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
             success:function(resultado){
+                $('.loader').hide();
                  $(".uib_w_31").html(resultado);
                 if(resultado.caminho==''){
                     alert('NÃO DEU!');
@@ -483,8 +504,12 @@
         type:"POST",
         url:url_geral+"cadastrar_venda.php",
         data:{n_cartao: n_cartao, n_mesa: n_mesa, produto: produto, qtd: qtd, user:user},
-        timeout: 2000,
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
             success:function(resultado){
+                $('.loader').hide();
                 // alert ($("#n_usuario").val());
                 $(".uib_w_20").html(resultado);
                 $("#produto").val('');
