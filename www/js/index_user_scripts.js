@@ -83,22 +83,15 @@
                 $('.loader').hide(); 
                 if(resultado == 1){
                     alert('Mesa Aberta !');
-					$('.btn_mesa').click();
+					//$('.btn_mesa').click();
+                    entrar_mesa();
                 }else if(resultado == 2){
 					alert('Campo Obrigatorio Vazio: NÚMERO MESA VAZIO!');
 				}else if(resultado == 3){
 					alert('Campo Obrigatorio Vazio: EVENTO NÃO SELECIONADOS, CONTATE A ADMINISTRAÇÃO.');
 				}else if(resultado == 4){
 					alert('MESA *** '+n_mesa+' *** JA ESTA ABERTA!');
-				}					
-                   
-                /*$("#nome_p").hide();
-                //style="display:none;"
-                if(resultado.caminho==''){
-                    alert('NÃO DEU!');
-                }else{ 
-                    activate_page("#cadastro_venda");
-                }*/
+				}	
             },
             error:function(resultado){
                 alert('Erro no cadastro de mesa #001');
@@ -106,6 +99,101 @@
         }); 
     }
 
+    function entrar_mesa(){
+
+        var n_cartao = $("#n_cartao").val();
+        var n_mesa   = $("#n_mesa").val();
+        var user     =getCookie("username");
+        
+        if(n_cartao==''){
+            alert('Nº Cartao vazio!');
+            return false;
+        }
+        if(n_mesa==''){
+            n_mesa = 0;
+        }
+        
+        //Conferindo se o cartão esta ativo Inicio 
+        $.ajax({
+        type:"POST",
+        dataType:"json",
+        url:url_geral+"cartao.php",
+        data:{n_cartao: n_cartao},
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
+            success:function(resultado){
+                $('.loader').hide();
+                if(resultado.caminho==''){
+                    alert('NÃO DEU!');
+                }else if(resultado.caminho == '2'){
+                    activate_page("#cadastro_venda");
+                }else{
+                    activate_page("#cadastro_mesa");
+                    $('#n_cartao_novo').val(n_cartao);
+                    //alert("Cartao não Cadastrado!");
+                }
+            },
+            error:function(resultado){
+                alert('Erro!');
+            }
+        });
+        //Conferindo se o cartão esta ativo Fim 
+        
+        //Listando produtos ja pedidos Inicio 
+        $.ajax({
+        type:"POST",
+        url:url_geral+"listar_venda.php",
+        data:{n_cartao: n_cartao, n_mesa: n_mesa},
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
+            success:function(resultado){
+                $('.loader').hide();
+                $("#produto").val('');
+                $("#qtd").val('1');
+                $("#nome_p").hide();
+                $(".uib_w_20").html(resultado);
+                if(resultado.caminho==''){
+                    alert('NÃO DEU!');
+                }else{ 
+                    $(".n_mesa").val(n_cartao);
+                
+                }
+            },
+            error:function(resultado){
+                alert('Erro no nome do usuario #002');
+            }
+        });
+        //Listando produtos ja pedidos IFim 
+        
+        //Produtos em destaque Inicio 
+        $.ajax({
+        type:"POST",
+        url:url_geral+"destaque.php",
+        data:{n_cartao: n_cartao, n_mesa: n_mesa},
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
+            success:function(resultado){
+                $('.loader').hide();
+                 $(".uib_w_31").html(resultado);
+                if(resultado.caminho==''){
+                    alert('NÃO DEU!');
+                }else{ 
+                    $(".n_mesa").val(n_mesa);
+                     
+                }
+            },
+            error:function(resultado){
+                alert('Erro no nome do usuario #003');
+            }
+        });
+        //Produtos em destaque Fim 
+    }
     //Login Inicio object.onmousedown
     
     
@@ -201,116 +289,8 @@
     });
 	
     //Seleção de mesa Inicio  
-    $(document).on("touchstart", ".btn_mesa", function(evt)
-    {     
-        var n_cartao = $("#n_cartao").val();
-        var n_mesa   = $("#n_mesa").val();
-        var user     =getCookie("username");
-        
-        if(n_cartao==''){
-            alert('Nº Cartao vazio!');
-            return false;
-        }
-        if(n_mesa==''){
-            n_mesa = 0;
-        }
-        
-        //Conferindo se o cartão esta ativo Inicio 
-        $.ajax({
-        type:"POST",
-        dataType:"json",
-        url:url_geral+"cartao.php",
-        data:{n_cartao: n_cartao},
-        timeout: 10000,
-            beforeSend: function(resultado){ 
-                $('.loader').show();
-            },
-            success:function(resultado){
-                $('.loader').hide();
-                if(resultado.caminho==''){
-                    alert('NÃO DEU!');
-                }else if(resultado.caminho == '2'){
-                    activate_page("#cadastro_venda");
-                }else{
-                    activate_page("#cadastro_mesa");
-                    $('#n_cartao_novo').val(n_cartao);
-                    //alert("Cartao não Cadastrado!");
-                }
-            },
-            error:function(resultado){
-                alert('Erro!');
-            }
-        });
-        //Conferindo se o cartão esta ativo Fim 
-        
-        //Listando produtos ja pedidos Inicio 
-        $.ajax({
-        type:"POST",
-        url:url_geral+"listar_venda.php",
-        data:{n_cartao: n_cartao, n_mesa: n_mesa},
-        timeout: 10000,
-            beforeSend: function(resultado){ 
-                $('.loader').show();
-            },
-            success:function(resultado){
-                $('.loader').hide();
-                $("#produto").val('');
-				$("#qtd").val('1');
-                
-                /*$("#sabor").hide();
-                $("#sabor").val('0');
-                
-                $("#sabor2").hide();
-                $("#sabor2").val('0');
-                
-                $("#fracao").hide();
-                $("#fracao").val('0');
-                
-                $("#rem").hide();
-                $("#rem").empty();
-        
-                $("#add").hide();
-                $("#add").empty();*/
-                $("#nome_p").hide();
-                $(".uib_w_20").html(resultado);
-                if(resultado.caminho==''){
-                    alert('NÃO DEU!');
-                }else{ 
-                    $(".n_mesa").val(n_cartao);
-                
-                }
-            },
-            error:function(resultado){
-                alert('Erro no nome do usuario #002');
-            }
-        });
-        //Listando produtos ja pedidos IFim 
-        
-        //Produtos em destaque Inicio 
-        $.ajax({
-        type:"POST",
-        url:url_geral+"destaque.php",
-        data:{n_cartao: n_cartao, n_mesa: n_mesa},
-        timeout: 10000,
-            beforeSend: function(resultado){ 
-                $('.loader').show();
-            },
-            success:function(resultado){
-                $('.loader').hide();
-                 $(".uib_w_31").html(resultado);
-                if(resultado.caminho==''){
-                    alert('NÃO DEU!');
-                }else{ 
-                    $(".n_mesa").val(n_mesa);
-                     
-                }
-            },
-            error:function(resultado){
-                alert('Erro no nome do usuario #003');
-            }
-        });
-        //Produtos em destaque Fim 
-        
+    $(document).on("touchstart", ".btn_mesa", function(evt){     
+        entrar_mesa();    
     });
      //Seleção de mesa Fim 
     
