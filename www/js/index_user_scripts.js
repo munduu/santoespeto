@@ -109,49 +109,7 @@
     //Login Inicio object.onmousedown
     
     
-    $(document).on("mousedown", ".btn_entrar", function(evt)
-    {
-        
-        var usuario = $("#usuario").val();
-        var senha = $("#senha").val();
-        if(usuario==''){
-            alert('usuario vazio');
-            return false;
-        }
-        if(senha==''){
-            alert('senha vazia');
-            return false;
-        }
-        
-        $.ajax({
-        type:"POST",
-        crossDomain: true,
-        dataType:"json",
-        url:url_geral+"login.php",
-        data:{usuario: usuario, senha: senha},
-        timeout: 10000,
-            beforeSend: function(resultado){ 
-                $('.loader').show();
-            },
-            success:function(resultado){
-                $('.loader').hide();
-                if(resultado.nomeu==''){
-                    //alert('NÃO DEU!');
-                }else{
-                    $("#n_usuario").val(usuario);
-                    activate_page("#mesa");
-                    setCookie("username", usuario, 30);
-                }
-            },
-            error:function(resultado){
-                alert('Erro no nome do usuario #001');
-            }
-        });
-        
-         return false;
-    });
-
-    $(document).on("mouseup", ".btn_entrar2", function(evt)
+    $(document).on("touchstart", ".btn_entrar", function(evt)
     {
         
         var usuario = $("#usuario").val();
@@ -195,7 +153,7 @@
     //Login Fim 
     
     //Logout Inicio 
-    $(document).on("mousedown", ".btn_sair", function(evt)
+    $(document).on("click", ".btn_sair", function(evt)
     {
         var pagina = $(this).attr('alt');
         if(pagina != ''){
@@ -209,7 +167,7 @@
     });
     //Logout Fim
     
-	$(document).on("mousedown", ".btn_imp_parc", function(evt)
+	$(document).on("click", ".btn_imp_parc", function(evt)
     {
         var n_mesa   = $("#n_mesa").val();
         var n_cartao = $("#n_cartao").val();
@@ -218,7 +176,7 @@
         imprecao_total(n_mesa,n_cartao,user,'1');
     });
 
-    $(document).on("mousedown", ".btn_fechar", function(evt)
+    $(document).on("click", ".btn_fechar", function(evt)
     {
         var n_mesa   = $("#n_mesa").val();
         var n_cartao = $("#n_cartao").val();
@@ -227,7 +185,7 @@
         imprecao_total(n_mesa,n_cartao,user,'2');
     });
 	
-	$(document).on("mousedown", ".btn_abrir_mesa", function(evt)
+	$(document).on("click", ".btn_abrir_mesa", function(evt)
     {
         var n_mesa   = $("#n_cartao_novo").val();
 		var user     = $("#n_usuario").val();
@@ -236,7 +194,7 @@
     });
 	
     //Seleção de mesa Inicio  
-    $(document).on("mousedown", ".btn_mesa", function(evt)
+    $(document).on("click", ".btn_mesa", function(evt)
     {     
         var n_cartao = $("#n_cartao").val();
         var n_mesa   = $("#n_mesa").val();
@@ -480,7 +438,7 @@
      //Seleção de produtos removidos, adicionados, sabores e fração + nome do produto Fim 
      
      //Função dos produtos em destaque Inicio 
-    $(document).on("mousedown", ".destaque", function(evt)
+    $(document).on("click", ".destaque", function(evt)
     {
         var prod = $(this).val();
         
@@ -490,7 +448,7 @@
      //Função dos produtos em destaque Fim 
      
      //Cadastro de venda Inicio      
-    $(document).on("mousedown", ".btn_incluir", function(evt)
+    $(document).on("click", ".btn_incluir", function(evt)
     {
         var produto  = $("#produto").val();
         var qtd      = $("#qtd").val();
@@ -593,7 +551,7 @@
      //Cadastro de venda Fim 
     
         /* button  Button */
-    $(document).on("mousedown", ".uib_w_17", function(evt)
+    $(document).on("click", ".uib_w_17", function(evt)
     {
          /*global activate_page */
          activate_page("#mesa"); 
