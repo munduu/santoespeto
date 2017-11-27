@@ -83,7 +83,7 @@
                 $('.loader').hide();
                 if(resultado == 1){
                     alert('Mesa Aberta !');
-                    //entrar_mesa();
+                    entrar_mesa();
                 }
 				if(resultado == 2){
 					alert('Campo Obrigatorio Vazio: NÚMERO MESA VAZIO!');
