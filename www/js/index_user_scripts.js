@@ -81,6 +81,7 @@
             },
             success:function(resultado){
                 $('.loader').hide(); 
+				alert (resultado);
                 if(resultado == 1){
                     alert('Mesa Aberta !');
 					//$('.btn_mesa').click();
