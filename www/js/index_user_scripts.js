@@ -80,8 +80,7 @@
                 $('.loader').show();
             },
             success:function(resultado){
-                $('.loader').hide(); 
-				alert(resultado);
+                $('.loader').hide();
                 if(resultado == 1){
                     alert('Mesa Aberta !');
                     //entrar_mesa();
