@@ -81,17 +81,17 @@
             },
             success:function(resultado){
                 $('.loader').hide(); 
-				alert(resultado);
-                if(resultado == 1){
-					alert(resultado);
+				//alert(resultado);
+				var resultado_erro = resultado;
+				alert(resultado_erro)
+                if(resultado_erro == 1){
                     alert('Mesa Aberta !');
-					//$('.btn_mesa').click();
                     entrar_mesa();
-                }else if(resultado == 2){
+                }else if(resultado_erro == 2){
 					alert('Campo Obrigatorio Vazio: NÚMERO MESA VAZIO!');
-				}else if(resultado == 3){
+				}else if(resultado_erro == 3){
 					alert('Campo Obrigatorio Vazio: EVENTO NÃO SELECIONADOS, CONTATE A ADMINISTRAÇÃO.');
-				}else if(resultado == 4){
+				}else if(resultado_erro == 4){
 					alert('MESA *** '+n_mesa+' *** JA ESTA ABERTA!');
 				}	
             },
