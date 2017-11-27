@@ -83,7 +83,6 @@
                 $('.loader').hide(); 
 				//alert(resultado);
 				var resultado_erro = resultado;
-				alert(resultado_erro)
                 if(resultado_erro == 1){
                     alert('Mesa Aberta !');
                     entrar_mesa();
