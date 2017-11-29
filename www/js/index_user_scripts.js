@@ -211,8 +211,8 @@
         $('#'+id_foco).focus();
     });
 	
-	$( ".btn_entrar" ).hover(function() {
-    //$(document).on("touchstart", ".btn_entrar", function(evt){
+    $(document).on("touchstart", ".btn_entrar", function(evt)
+    {
         
         var usuario = $("#usuario").val();
         var senha = $("#senha").val();
