@@ -64,6 +64,7 @@
                 }*/
             },
             error:function(resultado){
+				$('.loader').hide();
                 alert('Erro na impressao de venda #005');
             }
         }); 
@@ -96,6 +97,7 @@
 				}	
             },
             error:function(resultado){
+				$('.loader').hide();
                 alert('Erro no cadastro de mesa #001');
             }
         }); 
@@ -138,6 +140,7 @@
                 }
             },
             error:function(resultado){
+				$('.loader').hide();
                 alert('Erro!');
             }
         });
@@ -166,6 +169,7 @@
                 }
             },
             error:function(resultado){
+				$('.loader').hide();
                 alert('Erro no nome do usuario #002');
             }
         });
@@ -191,6 +195,7 @@
                 }
             },
             error:function(resultado){
+				$('.loader').hide();
                 alert('Erro no nome do usuario #003');
             }
         });
@@ -199,14 +204,14 @@
     //Login Inicio object.onmousedown
     
     
-    $(document).on("touchstart", ".foco_auto", function(evt)
+    $(document).on("touchend", ".foco_auto", function(evt)
     {
         var id_foco = $(this).attr('id');
         console.log(id_foco);
         $('#'+id_foco).focus();
     });
 
-    $(document).on("touchstart", ".btn_entrar", function(evt)
+    $(document).on("touchend", ".btn_entrar", function(evt)
     {
         
         var usuario = $("#usuario").val();
@@ -241,6 +246,7 @@
                 }
             },
             error:function(resultado){
+				$('.loader').hide();
                 alert('Erro no nome do usuario #001');
             }
         });
@@ -250,7 +256,7 @@
     //Login Fim 
     
     //Logout Inicio 
-    $(document).on("touchstart", ".btn_sair", function(evt)
+    $(document).on("touchend", ".btn_sair", function(evt)
     {
         var pagina = $(this).attr('alt');
         if(pagina != ''){
@@ -264,7 +270,7 @@
     });
     //Logout Fim
     
-	$(document).on("touchstart", ".btn_imp_parc", function(evt)
+	$(document).on("touchend", ".btn_imp_parc", function(evt)
     {
         var n_mesa   = $("#n_mesa").val();
         var n_cartao = $("#n_cartao").val();
@@ -273,7 +279,7 @@
         imprecao_total(n_mesa,n_cartao,user,'1');
     });
 
-    $(document).on("touchstart", ".btn_fechar", function(evt)
+    $(document).on("touchend", ".btn_fechar", function(evt)
     {
         var n_mesa   = $("#n_mesa").val();
         var n_cartao = $("#n_cartao").val();
@@ -282,7 +288,7 @@
         imprecao_total(n_mesa,n_cartao,user,'2');
     });
 	
-	$(document).on("touchstart", ".btn_abrir_mesa", function(evt)
+	$(document).on("touchend", ".btn_abrir_mesa", function(evt)
     {
         var n_mesa   = $("#n_cartao_novo").val();
 		var user     = $("#n_usuario").val();
@@ -291,7 +297,7 @@
     });
 	
     //Seleção de mesa Inicio  
-    $(document).on("touchstart", ".btn_mesa", function(evt){     
+    $(document).on("touchend", ".btn_mesa", function(evt){     
         entrar_mesa();    
     });
      //Seleção de mesa Fim 
@@ -427,7 +433,7 @@
      //Seleção de produtos removidos, adicionados, sabores e fração + nome do produto Fim 
      
      //Função dos produtos em destaque Inicio 
-    $(document).on("touchstart", ".destaque", function(evt)
+    $(document).on("touchend", ".destaque", function(evt)
     {
         var prod = $(this).val();
         
@@ -437,7 +443,7 @@
      //Função dos produtos em destaque Fim 
      
      //Cadastro de venda Inicio      
-    $(document).on("touchstart", ".btn_incluir", function(evt)
+    $(document).on("touchend", ".btn_incluir", function(evt)
     {
         var produto  = $("#produto").val();
         var qtd      = $("#qtd").val();
@@ -533,6 +539,7 @@
                 }
             },
             error:function(resultado){
+				$('.loader').hide();
                 alert('Erro no cadastro de venda #004');
             }
         });
@@ -540,7 +547,7 @@
      //Cadastro de venda Fim 
     
         /* button  Button */
-    $(document).on("touchstart", ".uib_w_17", function(evt)
+    $(document).on("touchend", ".uib_w_17", function(evt)
     {
          /*global activate_page */
          activate_page("#mesa"); 
