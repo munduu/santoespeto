@@ -204,15 +204,15 @@
     //Login Inicio object.onmousedown
     
     
-    $(document).on("touchend", ".foco_auto", function(evt)
+    $(document).on("touchstart", ".foco_auto", function(evt)
     {
         var id_foco = $(this).attr('id');
         console.log(id_foco);
         $('#'+id_foco).focus();
     });
-
-    $(document).on("touchend", ".btn_entrar", function(evt)
-    {
+	
+	$( ".btn_entrar" ).hover(function() {
+    //$(document).on("touchstart", ".btn_entrar", function(evt){
         
         var usuario = $("#usuario").val();
         var senha = $("#senha").val();
@@ -256,7 +256,7 @@
     //Login Fim 
     
     //Logout Inicio 
-    $(document).on("touchend", ".btn_sair", function(evt)
+    $(document).on("touchstart", ".btn_sair", function(evt)
     {
         var pagina = $(this).attr('alt');
         if(pagina != ''){
@@ -270,7 +270,7 @@
     });
     //Logout Fim
     
-	$(document).on("touchend", ".btn_imp_parc", function(evt)
+	$(document).on("touchstart", ".btn_imp_parc", function(evt)
     {
         var n_mesa   = $("#n_mesa").val();
         var n_cartao = $("#n_cartao").val();
@@ -279,7 +279,7 @@
         imprecao_total(n_mesa,n_cartao,user,'1');
     });
 
-    $(document).on("touchend", ".btn_fechar", function(evt)
+    $(document).on("touchstart", ".btn_fechar", function(evt)
     {
         var n_mesa   = $("#n_mesa").val();
         var n_cartao = $("#n_cartao").val();
@@ -288,7 +288,7 @@
         imprecao_total(n_mesa,n_cartao,user,'2');
     });
 	
-	$(document).on("touchend", ".btn_abrir_mesa", function(evt)
+	$(document).on("touchstart", ".btn_abrir_mesa", function(evt)
     {
         var n_mesa   = $("#n_cartao_novo").val();
 		var user     = $("#n_usuario").val();
@@ -297,7 +297,7 @@
     });
 	
     //Seleção de mesa Inicio  
-    $(document).on("touchend", ".btn_mesa", function(evt){     
+    $(document).on("touchstart", ".btn_mesa", function(evt){     
         entrar_mesa();    
     });
      //Seleção de mesa Fim 
@@ -433,7 +433,7 @@
      //Seleção de produtos removidos, adicionados, sabores e fração + nome do produto Fim 
      
      //Função dos produtos em destaque Inicio 
-    $(document).on("touchend", ".destaque", function(evt)
+    $(document).on("touchstart", ".destaque", function(evt)
     {
         var prod = $(this).val();
         
@@ -443,7 +443,7 @@
      //Função dos produtos em destaque Fim 
      
      //Cadastro de venda Inicio      
-    $(document).on("touchend", ".btn_incluir", function(evt)
+    $(document).on("touchstart", ".btn_incluir", function(evt)
     {
         var produto  = $("#produto").val();
         var qtd      = $("#qtd").val();
@@ -547,7 +547,7 @@
      //Cadastro de venda Fim 
     
         /* button  Button */
-    $(document).on("touchend", ".uib_w_17", function(evt)
+    $(document).on("touchstart", ".uib_w_17", function(evt)
     {
          /*global activate_page */
          activate_page("#mesa"); 
